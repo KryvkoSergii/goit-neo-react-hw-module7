@@ -1,8 +1,9 @@
 import PropTypes from "prop-types";
-import Icons from "../../assets/icon.svg";
 import css from "./Contact.module.css";
 import { useDispatch } from "react-redux";
-import { deleteContact } from "../../redux/contactsSlice";
+import { deleteContact } from "../../redux/contactsOps";
+import { MdSupervisedUserCircle } from "react-icons/md";
+import { MdLocalPhone } from "react-icons/md";
 
 export default function Contact({ contact }) {
   const dispatch = useDispatch();
@@ -11,18 +12,12 @@ export default function Contact({ contact }) {
     <div className={css.contact_panel} id={"contact-" + contact.id}>
       <div>
         <div className={css.contact_field}>
-          <svg>
-            {" "}
-            <use xlinkHref={`${Icons}#user`}></use>
-          </svg>
+          <MdSupervisedUserCircle />
           {contact.name}
         </div>
         <div className={css.contact_field}>
-          <svg>
-            {" "}
-            <use xlinkHref={`${Icons}#phone`}></use>
-          </svg>
-          {contact.number}
+          <MdLocalPhone />
+          {contact.phone}
         </div>
       </div>
       <div>
@@ -35,9 +30,9 @@ export default function Contact({ contact }) {
 let ContactItem = PropTypes.shape({
   id: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
-  number: PropTypes.string.isRequired,
+  phone: PropTypes.string.isRequired,
 });
 
 Contact.propTypes = {
-  contact: ContactItem
+  contact: ContactItem,
 };
